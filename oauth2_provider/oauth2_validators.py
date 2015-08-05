@@ -320,6 +320,8 @@ class OAuth2Validator(RequestValidator):
 
         # TODO check out a more reliable way to communicate expire time to oauthlib
         token['expires_in'] = oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS
+        token['user_id'] = access_token.user_id
+        token['username'] = access_token.user.username
 
     def revoke_token(self, token, token_type_hint, request, *args, **kwargs):
         """
